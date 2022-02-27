@@ -1,0 +1,52 @@
+﻿
+@page
+@model EmployeeWebApplication.Pages.EmployeeInformationModel
+@{ ViewData["Title"] = "Employee Information"; }
+
+<div class="text-center">
+    <h1>Employee Information</h1>
+    <p class="lead">Enter the employee's information below to calculate their benefits deduction</p>
+    <hr />
+</div>
+<form method="post">
+    <h4>Employee</h4>
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+            <label asp-for="Employee.Name">Name</label>
+            <input asp-for="Employee.Name" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Employee.YearlySalary">Yearly Salary</label>
+            <input asp-for="Employee.YearlySalary" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Employee.NumberOfPaychecksPerYear">Number Of Paychecks Per Year</label>
+            <input asp-for="Employee.NumberOfPaychecksPerYear" class="form-control" />
+        </div>
+    </div>
+    @if (Model.Employee.Dependents.Count > 0)
+    {
+        <h4>Dependents</h4> for (int i = 0; i < Model.Employee.Dependents.Count; i++)
+        {
+            <div class="form-row row">
+                <div class="form-group col-md-4">
+                    <label asp-for="Employee.Dependents[i].Name">Name</label>
+                    <input asp-for="Employee.Dependents[i].Name" class="form-control" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Employee.Dependents[i].Type">Type</label>
+                    <select asp-for="Employee.Dependents[i].Type" asp-items="Model.DependentTypeList" class="form-control"></select>
+                </div>
+            </div>}
+    }
+    <hr />
+    <div class="form-row row">
+        <div class="form-group col-md-12 text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Calculate Deductions</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,45 @@
+﻿
+
+
+@page
+@model EmployeeWebApplication.Pages.EmployeePayResultsModel
+@{ ViewData["Title"] = "EmployeePayResults"; }
+
+<div class="text-center">
+    <h1>Calculation Results</h1>
+    <hr />
+</div>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th></th>
+            <th>Deduction Per Paycheck</th>
+            <th>Deduction Per Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Employee</td>
+            <td>@Html.DisplayFor(m => m.CalcuationResults.EmployeeDeductionPerPayCheck)</td>
+            <td>@Html.DisplayFor(m => m.CalcuationResults.EmployeeDeductionPerYear)</td>
+        </tr>
+        @if (Model.CalcuationResults.DependentsDeductionPerPayCheck > 0)
+        {
+            <tr>
+                <td>Dependents</td>
+                <td>@Html.DisplayFor(m => m.CalcuationResults.DependentsDeductionPerPayCheck)</td>
+                <td>@Html.DisplayFor(m => m.CalcuationResults.DependentsDeductionPerYear)</td>
+            </tr>
+}
+        <tr>
+            <td>Total</td>
+            <td>@Html.DisplayFor(m => m.CalcuationResults.TotalDeductionPerPayCheck)</td>
+            <td>@Html.DisplayFor(m => m.CalcuationResults.TotalDeductionPerYear)</td>
+        </tr>
+    </tbody>
+</table>
+<h5>Employee paycheck after deductions: @Html.DisplayFor(m => m.CalcuationResults.EmployeePaycheckAfterDeductions)</h5>
+<h5>Employee yearly pay after deductions: @Html.DisplayFor(m => m.CalcuationResults.EmployeeYearlyPayAfterDeductions) </h5>
+
+

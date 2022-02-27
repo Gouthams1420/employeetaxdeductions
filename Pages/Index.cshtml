@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{ ViewData["Title"] = "Home page"; }
+
+<div class="text-center">
+    <h1>Employee Benefits Deduction Calculator</h1>
+    <p class="lead">Please select the number of dependents for the employee</p>
+    <div class=" justify-content-md-center">
+        <div class="col-auto">
+            <form method="post">
+                <div class="form-row align-items-center row">
+                    <div class="col-3">
+                        <label asp-for="NumberOfDependents">Number of Dependents:</label>
+                    </div>
+                    <div class="col-4">
+                        <select asp-for="NumberOfDependents" asp-items="Model.DependentNumberList" class="form-control"></select>
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary">Start</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
